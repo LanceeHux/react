@@ -1,14 +1,13 @@
-import Navbar from "./components/Navbar";
-import "./index.css";
+import { useState, useEffect, useRef } from 'react';
 
 export default function App() {
+  const [ likes, setLikes ] = useState(0);
+  const paragraphRef = useRef(null);
+
   return (
     <>
-    <Navbar />
-    <div>
-      <h1>Hello React!</h1>
-      <p>My first React app</p>
-    </div>
+    <p ref={paragraphRef}>It's 2019</p>
+    <button onClick={() => paragraphRef.current.innerText = " Its 2026"}>Update Year</button>
     </>
-  );
+  )
 }
