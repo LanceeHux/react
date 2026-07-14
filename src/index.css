@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+/* Forces the hidden React wrappers to stretch fully */
+html, 
+body, 
+#root, 
+#__next {
+  width: 100%;
+}
