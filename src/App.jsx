@@ -3,7 +3,7 @@ export default function App() {
   const [likes, setLikes] = useState(0);
   return (
     <>
-    <header className="shadow-2xl w-full absolute top-0 left-0 flex justify-between bg-[#1c1c1c] text-white p-[30px] [letter-spacing:3px]">
+    <header className="shadow-2xl w-full sticky top-0 left-0 flex justify-between bg-[#1c1c1c] text-white p-[30px] [letter-spacing:3px]">
       <h1 className="text-2xl">My React Site: @Lee</h1>
       <div className="flex gap-10">
         <a href="Home" className="hover:bg-black duration-600 p-[10px] rounded-lg">Home</a>
