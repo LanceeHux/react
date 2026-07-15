@@ -13,7 +13,7 @@ export default function App() {
     </header>
     <main className="w-full bg-black min-h-screen text-white">
       <section className="min-h-screen w-full flex flex-row justify-center items-center gap-10 bg-[radial-gradient(circle_at_top_left,_#1c1c1c,_transparent_70%)]">
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 md:flex-row md:gap-5">
           <h1 className='text-8xl'>My React Site!</h1>
           <p className=''>This is my first React Site! </p>
           <div className="flex gap-[60%]">
