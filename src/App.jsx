@@ -24,9 +24,9 @@ export default function App() {
         <button className='p-3 duration-300 ease-in-out rounded-md hover:bg-[#b4b1b1]'>Projects</button>
       </div>
       <main className='flex justify-center items-center min-h-screen'>
-        <section className='p-5 flex flex-col md:flex-row gap-5 w-full [background:rgba(0,0,0,0.473)]'>
+        <section className=' min-h-screen p-5 flex flex-col md:flex-row gap-5 w-full [background:rgba(0,0,0,0.473)]'>
           
-          <div className="flex flex-col gap-3 justify-center">
+          <div className="flex flex-col gap-3 justify-center mt-10">
             <h1 className='text-3xl md:text-8xl'>My React Site</h1>
           <p>Hello this is my first React Site</p>
           <div className='flex gap-4 justify-between p-3 rounded-md'>
@@ -34,8 +34,8 @@ export default function App() {
             <button className='hover:bg-[#d5d5d5] bg-[#1c1c1c] hover:text-black text-white duration-300 ease-in-out rounded-md p-[5px] w-[50%]'>Github</button>
           </div>
             </div>
-          <div className=" bg-[#d5d5d5] p-2 rounded-xl shadow-md">
-            <img className='rounded-2xl shadow-xl w-[300px]' src="https://lanceehux.github.io/images/profile.jpg" alt="" />
+          <div className='bg-black items-center flex'>
+            <img className='r' src="https://lanceehux.github.io/images/profile.jpg" alt="" />
           </div>
         </section>
       </main>
