@@ -6,4 +6,5 @@ body,
 #root, 
 #__next {
   width: 100%;
+  background: white;
 }
