@@ -7,4 +7,5 @@ body,
 #__next {
   width: 100%;
   background: white;
+  scroll-behavior: smooth;
 }
