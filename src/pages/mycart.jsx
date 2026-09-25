@@ -1,6 +1,6 @@
 import { styles } from "../App"
 
-export const mycart = (
+export const myCart = (
     <>
     hello
     </>

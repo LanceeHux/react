@@ -1,6 +1,13 @@
-import { styles } from "./App"
+import { styles } from "../App"
 
-export const loggedIn = (
+const user = {
+  name: "Leeyam",
+  profileImg: "/images/L.png",
+  purchasesCount: 0,
+  status: "Buyer"
+}
+
+export const activeProfile = (
     <>
     <main>
           <div className={styles.profile.main}>
@@ -58,4 +65,10 @@ export const loggedIn = (
           </div>
         </main>
         </>
+)
+
+export const inactiveProfile = (
+  <>
+  
+  </>
 )
