@@ -9,60 +9,62 @@ const items = [
     {name: "Keychain Dog", price: 9.81, desc: "A cute fancy keychain dog", img: "/images/L.png", sold: 132}
 ];
 
-export const dashboard = (
-    <main className={styles.main}>
-        <div className={styles.sectionHeader}>
-            <p className={styles.eyebrow}>MARKETPLACE</p>
+export default function Dashboard() {
+    return (
+        <main className={styles.main}>
+            <div className={styles.sectionHeader}>
+                <p className={styles.eyebrow}>MARKETPLACE</p>
 
-            <h2 className={styles.title}>
-            Top Item Sales
-            </h2>
+                <h2 className={styles.title}>
+                Top Item Sales
+                </h2>
 
-            <p className={styles.subtitle}>
-            Popular products from the Lezada marketplace
-            </p>
-        </div>
-        <section className={styles.itemGrid}>
-        {items.map((item, index) => (
-            <article
-                key={index}
-                className={styles.itemCard}
-            >
-                <div className={styles.imageContainer}>
-                <img
-                    src={item.img}
-                    alt={item.name}
-                    className={styles.itemImg}
-                />
-                </div>
-
-                <div className={styles.itemContent}>
-                    <div className={styles.itemTop}>
-                        <h3 className={styles.itemName}>
-                        {item.name}
-                        </h3>
-
-                        <span className={styles.itemPrice}>
-                        ₱{item.price.toFixed(2)}
-                        </span>
+                <p className={styles.subtitle}>
+                Popular products from the Lezada marketplace
+                </p>
+            </div>
+            <section className={styles.itemGrid}>
+            {items.map((item, index) => (
+                <article
+                    key={index}
+                    className={styles.itemCard}
+                >
+                    <div className={styles.imageContainer}>
+                    <img
+                        src={item.img}
+                        alt={item.name}
+                        className={styles.itemImg}
+                    />
                     </div>
 
-                    <p className={styles.itemDesc}>
-                        {item.desc}
-                    </p>
+                    <div className={styles.itemContent}>
+                        <div className={styles.itemTop}>
+                            <h3 className={styles.itemName}>
+                            {item.name}
+                            </h3>
 
-                    <div className={styles.itemBottom}>
-                        <span className={styles.itemSold}>
-                        {item.sold} sold
-                        </span>
+                            <span className={styles.itemPrice}>
+                            ₱{item.price.toFixed(2)}
+                            </span>
+                        </div>
 
-                        <button className={styles.viewBtn}>
-                        View
-                        </button>
+                        <p className={styles.itemDesc}>
+                            {item.desc}
+                        </p>
+
+                        <div className={styles.itemBottom}>
+                            <span className={styles.itemSold}>
+                            {item.sold} sold
+                            </span>
+
+                            <button className={styles.viewBtn}>
+                            View
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </article>
-            ))}
-        </section>
-    </main>
-)
+                </article>
+                ))}
+            </section>
+        </main>
+    )
+}

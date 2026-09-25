@@ -1,7 +1,9 @@
 import { styles } from "../App"
 
-export const myCart = (
+export default function MyCart() {
+    return (
     <>
     hello
     </>
-)
+    )
+}
