@@ -1,4 +1,4 @@
-const styles = {
+export const styles = {
     header: `
       h-[70px] px-[5%]
       flex items-center justify-between
