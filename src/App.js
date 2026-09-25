@@ -13,8 +13,10 @@ export const styles = {
     `,
 
     nav: `
-      flex gap-2
+      flex gap-2 hidden md:block
     `,
+
+    navMobile: `block md:hidden`,
 
     navBtn: `
       px-3.5 py-2
