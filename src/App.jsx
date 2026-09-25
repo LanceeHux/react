@@ -142,6 +142,13 @@ export default function App() {
 
   const items = [
     {
+      name: "Denver Sticker",
+      price: 100,
+      desc: "A Denver sticker with various designs.",
+      img: "/images/denver.jpeg",
+      sold: 132
+    },
+    {
       name: "Leest",
       price: 55,
       desc: "An academic to-do list for specific subjects.",
@@ -167,13 +174,6 @@ export default function App() {
       price: 98.4,
       desc: "AI powered by the Grok API.",
       img: "/images/leeplus.jpeg",
-      sold: 132
-    },
-    {
-      name: "Denver Sticker",
-      price: 100,
-      desc: "A Denver sticker with various designs.",
-      img: "/images/denver.jpeg",
       sold: 132
     },
     {
