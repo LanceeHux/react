@@ -24,6 +24,16 @@ export const styles = {
       text-sm font-medium text-gray-500
       transition-all duration-200
       hover:bg-black hover:text-white
+      w-full
+    `,
+
+    mobileNavBtn: `
+      px-3.5 py-2
+      rounded-lg
+      text-sm font-medium text-white
+      transition-all duration-200
+      hover:bg-black hover:text-white
+      w-full
     `,
 
     main: `

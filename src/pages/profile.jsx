@@ -68,18 +68,21 @@ export const ActiveProfile = () => {
 }
 
 export const InactiveProfile = () => {
-  const [ username, setUsername ] = useState("Leeyam");
+  const [ username, setUsername] = useState("Leeyam");
   const [ password, setPassword ] = useState("1234");
-    async function handleLogin() {
-      const { data: selectAccount, error: selectError } = 
-      await supabase.from("accounts").select("*").eq("username", username).eq("password", password)
 
-      if (selectError) {
-        alert("having error logging in!");
-      } else if (selectAccount && selectAccount.length > 0) {
-        alert("Welcome back, " + username)
-    } else if (selectAccount.length === 0){
-      alert("no matching accounts!");
+  async function handleLogin() {
+    const {data, error} = await supabase.from("accounts")
+    .select("*").eq("username", username)
+    .eq("password", password)
+
+    if (error) {
+      alert("error logging in!");
+      return;
+    } else if (data && data.length > 0) {
+      alert(`welcome! ${username}`);
+    } else {
+      alert("no matching accounts.")
     }
   }
   return (

@@ -9,6 +9,7 @@ import { ActiveProfile, InactiveProfile } from "./pages/profile"
 export default function App() {
   let [activeSection, setSection] = useState("PROFILE");
   let [isLoggedIn, setLogin] = useState(false);
+  let [nav, openNav] = useState(false)
   return (
     <>
     <header className={styles.header}>
@@ -20,10 +21,19 @@ export default function App() {
           <a onClick={() => setSection("PROFILE")} className={styles.navBtn}>Profile</a>
         </nav>
 
-        <button className={styles.navMobile}>🍔</button>
-        {/* to be finished */}
-
+        <button className={styles.navMobile} onClick={() => openNav(!nav)}>🍔</button>
     </header>
+    {nav === true && (
+      <div className="flex justify-end relative">
+      <nav className="flex flex-col p-3 items-end absolute bg-[gray] rounded-xl m-2">
+        <a onClick={() => setSection("DASHBOARD")} className={styles.mobileNavBtn}>Dashboard</a>
+        <a onClick={() => setSection("MY_CART")} className={styles.mobileNavBtn}>My Cart</a>
+        <a onClick={() => setSection("PROFILE")} className={styles.mobileNavBtn}>Profile</a>
+      </nav>
+    </div>
+    )}
+    
+    
 
       {/* DASHBOARD */}
       {activeSection === "DASHBOARD" && <Dashboard/>}
