@@ -1,13 +1,11 @@
+import { supabase } from "../utils/supabase"
+import { useEffect, useState } from "react"
 import { styles } from "../App"
 
-const user = {
-  name: "Leeyam",
-  profileImg: "/images/L.png",
-  purchasesCount: 0,
-  status: "Buyer"
-}
+
 
 export const ActiveProfile = () => {
+
   return (
     <>
     <main>
@@ -70,11 +68,25 @@ export const ActiveProfile = () => {
 }
 
 export const InactiveProfile = () => {
+  const [ username, setUsername ] = useState("Leeyam");
+  const [ password, setPassword ] = useState("1234");
+    async function handleLogin() {
+      const { data: selectAccount, error: selectError } = 
+      await supabase.from("accounts").select("*").eq("username", username).eq("password", password)
+
+      if (selectError) {
+        alert("having error logging in!");
+      } else if (selectAccount && selectAccount.length > 0) {
+        alert("Welcome back, " + username)
+    } else if (selectAccount.length === 0){
+      alert("no matching accounts!");
+    }
+  }
   return (
   <main className={styles.main}>
     <div className={styles.profile.unregisteredDiv.div}>
       <h1>Login to your account to proceed.</h1>
-      <button className={styles.profile.unregisteredDiv.btn}>test</button>
+      <button onClick={() => handleLogin()} className={styles.profile.unregisteredDiv.btn}>test</button>
     </div>
   </main>
   )

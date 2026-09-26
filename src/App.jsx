@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { supabase } from "./utils/supabase"
 import { styles } from "./App"
 
 import Dashboard from "./pages/dashboard"
