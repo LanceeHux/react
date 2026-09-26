@@ -94,3 +94,21 @@ export const InactiveProfile = () => {
   </main>
   )
 }
+
+export const AccountHandler = () => {
+  const [ channel, setChannel ] = useState("REGISTER");
+  return (
+    <main className={styles.main}>
+      <div className=" shadow-xl p-5 rounded-2xl border border-2 border-[pink]">
+        <div className="flex justify-center flex-col items-center border-b border-gray-200 pb-4">
+          <h1 className={styles.title}>Lezada Account</h1>
+          <nav className={styles.profile.accountHandler.nav}>
+            <a onClick={() => setChannel("REGISTER")} className={styles.profile.accountHandler.navBtn}>Register</a>
+            <a onClick={() => setChannel("LOGIN")} className={styles.profile.accountHandler.navBtn}>Login</a>
+          </nav>
+        </div>
+        
+      </div>
+    </main>
+  )
+}

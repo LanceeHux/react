@@ -272,6 +272,10 @@ export const styles = {
       unregisteredDiv: {
         div: `p-5 flex flex-col gap-3 items-center [letter-spacing:2px]`,
         btn: `bg-pink-500 text-white p-5 rounded-xl hover:bg-pink-800 [transition:0.6s_ease] border`
+      },
+      accountHandler: {
+        nav: `p-3 rounded-xl shadow-lg flex w-[50%] justify-between`,
+        navBtn: ` cursor-pointer [letter-spacing:2px] text-[gray] font-bold focus:underline`
       }
     }
   }

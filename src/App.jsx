@@ -4,7 +4,7 @@ import { styles } from "./App"
 
 import Dashboard from "./pages/dashboard"
 import MyCart from "./pages/mycart"
-import { ActiveProfile, InactiveProfile } from "./pages/profile"
+import { ActiveProfile, InactiveProfile, AccountHandler } from "./pages/profile"
 
 export default function App() {
   let [activeSection, setSection] = useState("PROFILE");
@@ -46,6 +46,7 @@ export default function App() {
       {/* PROFILE LOGIN */}
       {activeSection === "PROFILE" && isLoggedIn && <ActiveProfile/>}
       {activeSection === "PROFILE" && !isLoggedIn && <InactiveProfile/>}
+      {activeSection === "PROFILE" && !isLoggedIn && <AccountHandler/>}
     </>
   )
 }
