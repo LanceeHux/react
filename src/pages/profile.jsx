@@ -2,61 +2,80 @@ import { supabase } from "../utils/supabase"
 import { useEffect, useState } from "react"
 import { styles } from "../App"
 
+const user = {
+  name: "",
+  email: "",
+  password: ""
+}
 
+export const ShowProfile = ({ loggedIn,
+  setLoggedIn,
+  username,
+  setUsername,
+  user_id,
+  setUser_id }) => {
 
-export const ActiveProfile = () => {
+  if (!loggedIn) {
+    return <InactiveProfile setLoggedIn={setLoggedIn} setUsername={setUsername} setUser_id={setUser_id} />
+  } else {
+    return <ActiveProfile username={username}/>
+  }
+  
+}
+
+export const ActiveProfile = ({ username }) => {
 
   return (
     <>
     <main>
-        <div className={styles.profile.main}>
+        <div className={styles.profile.activeProfile.main}>
           {/* Banner */}
-          <div className={styles.profile.banner} />
+          <div className={styles.profile.activeProfile.banner} />
           {/* Profile information */}
-          <div className={styles.profile.profileHolder}>
+          <div className={styles.profile.activeProfile.profileHolder}>
             <img
-              className={styles.profile.profileImg}
+              className={styles.profile.activeProfile.profileImg}
               src={user.profileImg}
               alt={user.name}
             />
-            <div className={styles.profile.userInfo}>
+            <div className={styles.profile.activeProfile.userInfo}>
               <div>
-                <h1 className={styles.profile.name}>
-                  {user.name}
+                <h1 className={styles.profile.activeProfile.name}>
+                  {username}
                 </h1>
-                <p className={styles.profile.role}>
-                  Lezada {user.status}
+                <p className={styles.profile.activeProfile.role}>
+                  Lezada Buyer
                 </p>
               </div>
-              <span className={styles.profile.statusBadge}>
-                {user.status}
+              <span className={styles.profile.activeProfile.statusBadge}>
+                Buyer
               </span>
             </div>
             {/* Statistics */}
-            <div className={styles.profile.stats}>
-              <div className={styles.profile.statCard}>
-                <p className={styles.profile.statValue}>
-                  {user.purchasesCount}
+            <div className={styles.profile.activeProfile.stats}>
+              <div className={styles.profile.activeProfile.statCard}>
+                <p className={styles.profile.activeProfile.statValue}>
+                  0
                 </p>
-                <p className={styles.profile.statLabel}>
+                <p className={styles.profile.activeProfile.statLabel}>
                   Items Purchased
                 </p>
               </div>
-              <div className={styles.profile.statCard}>
-                <p className={styles.profile.statValue}>
+              <div className={styles.profile.activeProfile.statCard}>
+                <p className={styles.profile.activeProfile.statValue}>
                   ₱0.00
                 </p>
-                <p className={styles.profile.statLabel}>
+                <p className={styles.profile.activeProfile.statLabel}>
                   Total Spent
                 </p>
               </div>
             </div>
             {/* Actions */}
-            <div className={styles.profile.actions}>
-              <button className={styles.profile.actionBtn}>
+            <div className={styles.profile.activeProfile.actions}>
+              <button className={styles.profile.activeProfile.actionBtn}>
                 Edit Profile
               </button>
-              <button className={styles.profile.primaryBtn}>
+              <button className={styles.profile.activeProfile.primaryBtn}>
                 My Purchases
               </button>
             </div>
@@ -67,9 +86,7 @@ export const ActiveProfile = () => {
   )
 }
 
-export const InactiveProfile = () => {
-  const [ username, setUsername] = useState("Leeyam");
-  const [ password, setPassword ] = useState("1234");
+export const InactiveProfile = ({ setLoggedIn, setUsername, setUser_id }) => {
 
   const [ showHandler, setShowHandler ] = useState(false);
 
@@ -97,13 +114,12 @@ export const InactiveProfile = () => {
     </main>
       )
     } 
-    return <AccountHandler />
+    return <AccountHandler setLoggedIn={setLoggedIn} setUsername={setUsername} setUser_id={setUser_id} />
 }
 
-export const AccountHandler = () => {
+export const AccountHandler = ({ setLoggedIn, setUsername, setUser_id }) => {
   const [ channel, setChannel ] = useState("REGISTER");
   const [ loading, setLoading ] = useState(false);
-
   const registerHandler = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -150,6 +166,39 @@ export const AccountHandler = () => {
     
 
   }
+  const loginHandler = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    async function validateAccount() {
+      const { data, error } = await supabase.from("accounts")
+      .select("*").eq("email", email).eq("password", password)
+
+      if (error) {
+        alert(error.message);
+        return false;
+      } else if (data.length === 1) {
+        setUsername(data[0].username);
+        setUser_id(data[0].id)
+        return true;
+        
+      }
+    }
+    const isValid = await validateAccount();
+
+    if (!isValid) {
+      alert("there are no matching accounts!");
+      return;
+    } else if (isValid) {
+      alert("account detected");
+      setLoggedIn(true);
+      setLoading(false);
+    }
+  }
 
   return (
     <main className={styles.main}>
@@ -187,22 +236,22 @@ export const AccountHandler = () => {
           {channel === "LOGIN" && (
             <main className={styles.profile.accountHandler.main}>
               <h1 className={styles.profile.accountHandler.title}>Login Account!</h1>
-              <form action="POST" className={styles.profile.accountHandler.form}>
+              <form onSubmit={loginHandler} action="POST" className={styles.profile.accountHandler.form}>
 
                 <label htmlFor="Email" className={styles.profile.accountHandler.subtitle}>Email:</label>
-                <input type="email" className={styles.profile.accountHandler.inputs} placeholder="leeyam@example.com" required/>
+                <input name="email" type="email" className={styles.profile.accountHandler.inputs} placeholder="leeyam@example.com" required/>
 
                 <label htmlFor="Password" className={styles.profile.accountHandler.subtitle}>Password:</label>
-                <input type="password" className={styles.profile.accountHandler.inputs} placeholder="#Scammer123!" required/>
+                <input name="password" type="password" className={styles.profile.accountHandler.inputs} placeholder="#Scammer123!" required/>
 
-                <button type="submit" className={styles.profile.accountHandler.submitBtn}>Login</button>
+                <button type="submit" className={styles.profile.accountHandler.submitBtn}>
+                  {loading ? "Registering" : "Register"}
+                </button>
               </form>
             </main>
-          )}
-          
+          )}          
         </div>
       </div>
-      
     </main>
   )
 }

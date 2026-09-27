@@ -4,11 +4,14 @@ import { styles } from "./App"
 
 import Dashboard from "./pages/dashboard"
 import MyCart from "./pages/mycart"
-import { ActiveProfile, InactiveProfile, AccountHandler } from "./pages/profile"
+import { ActiveProfile, InactiveProfile, AccountHandler, ShowProfile } from "./pages/profile"
 
 export default function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [ user_id, setUser_id ] = useState()
+
   let [activeSection, setSection] = useState("PROFILE");
-  let [isLoggedIn, setLogin] = useState(false);
   let [nav, openNav] = useState(false)
   return (
     <>
@@ -24,7 +27,7 @@ export default function App() {
         <button className={styles.navMobile} onClick={() => openNav(!nav)}>🍔</button>
     </header>
     {nav === true && (
-      <div className="flex justify-end relative">
+      <div className="flex justify-end relative [z-index:999]">
       <nav className="flex flex-col p-3 items-end absolute bg-[gray] rounded-xl m-2">
         <a onClick={() => setSection("DASHBOARD")} className={styles.mobileNavBtn}>Dashboard</a>
         <a onClick={() => setSection("MY_CART")} className={styles.mobileNavBtn}>My Cart</a>
@@ -39,13 +42,12 @@ export default function App() {
       {activeSection === "DASHBOARD" && <Dashboard/>}
 
       {/* MY_CART LOGIN */}
-      {activeSection === "MY_CART" && isLoggedIn === true && <MyCart/>}
+      {activeSection === "MY_CART" && loggedIn === true && <MyCart/>}
       {/* MY_CART LOGOUT */}
-      {activeSection === "MY_CART" && !isLoggedIn && <Dashboard/>}
+      {activeSection === "MY_CART" && <Dashboard/>}
 
       {/* PROFILE LOGIN */}
-      {activeSection === "PROFILE" && isLoggedIn && <ActiveProfile/>}
-      {activeSection === "PROFILE" && !isLoggedIn && <InactiveProfile/>}
+      {activeSection === "PROFILE" && <ShowProfile username={username} setUsername={setUsername} user_id={user_id} setUser_id={setUser_id} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}
       
     </>
   )

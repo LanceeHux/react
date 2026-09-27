@@ -148,127 +148,129 @@ export const styles = {
       hover:-translate-y-px
     `,
     profile: {
-      main: `
-        relative
-        overflow-hidden
-        w-full
-        bg-white
-        border border-gray-200
-        shadow-xl
-      `,
-    
-      banner: `
-        h-32
-        w-full
-        bg-gradient-to-r
-        from-pink-500
-        via-rose-500
-        to-red-500
-      `,
-    
-      profileHolder: `
-        relative
-        px-6 pb-6
-      `,
-    
-      profileImg: `
-        absolute
-        -top-12 left-6
-        size-24
-        rounded-full
-        object-cover
-        border-4 border-white
-        shadow-lg
-        bg-gray-100
-      `,
-    
-      userInfo: `
-        pt-16
-        flex
-        items-end
-        justify-between
-        gap-4
-      `,
-    
-      name: `
-        text-2xl
-        font-extrabold
-        tracking-tight
-        text-gray-900
-      `,
-    
-      role: `
-        mt-1
-        text-sm
-        text-gray-500
-      `,
-    
-      statusBadge: `
-        px-3 py-1
-        rounded-full
-        bg-pink-100
-        text-pink-600
-        text-xs
-        font-bold
-      `,
-    
-      stats: `
-        grid
-        grid-cols-2
-        gap-3
-        mt-6
-      `,
-    
-      statCard: `
-        p-4
-        rounded-xl
-        bg-gray-50
-        border border-gray-100
-      `,
-    
-      statValue: `
-        text-2xl
-        font-extrabold
-        text-gray-900
-      `,
-    
-      statLabel: `
-        mt-1
-        text-xs
-        font-medium
-        text-gray-400
-      `,
-    
-      actions: `
-        mt-6
-        pt-5
-        border-t border-gray-100
-        flex
-        justify-end
-        gap-2
-      `,
-    
-      actionBtn: `
-        px-4 py-2
-        rounded-lg
-        text-sm
-        font-semibold
-        transition-all duration-200
-        border border-gray-200
-        hover:bg-gray-100
-      `,
-    
-      primaryBtn: `
-        px-4 py-2
-        rounded-lg
-        text-sm
-        font-semibold
-        bg-black
-        text-white
-        transition-all duration-200
-        hover:bg-gray-700
-        hover:-translate-y-px
-      `,
+      activeProfile: {
+        main: `
+          relative
+          overflow-hidden
+          w-full
+          bg-white
+          border border-gray-200
+          shadow-xl
+        `,
+      
+        banner: `
+          h-32
+          w-full
+          bg-gradient-to-r
+          from-pink-500
+          via-rose-500
+          to-red-500
+        `,
+      
+        profileHolder: `
+          relative
+          px-6 pb-6
+        `,
+      
+        profileImg: `
+          absolute
+          -top-12 left-6
+          size-24
+          rounded-full
+          object-cover
+          border-4 border-white
+          shadow-lg
+          bg-gray-100
+        `,
+      
+        userInfo: `
+          pt-16
+          flex
+          items-end
+          justify-between
+          gap-4
+        `,
+      
+        name: `
+          text-2xl
+          font-extrabold
+          tracking-tight
+          text-gray-900
+        `,
+      
+        role: `
+          mt-1
+          text-sm
+          text-gray-500
+        `,
+      
+        statusBadge: `
+          px-3 py-1
+          rounded-full
+          bg-pink-100
+          text-pink-600
+          text-xs
+          font-bold
+        `,
+      
+        stats: `
+          grid
+          grid-cols-2
+          gap-3
+          mt-6
+        `,
+      
+        statCard: `
+          p-4
+          rounded-xl
+          bg-gray-50
+          border border-gray-100
+        `,
+      
+        statValue: `
+          text-2xl
+          font-extrabold
+          text-gray-900
+        `,
+      
+        statLabel: `
+          mt-1
+          text-xs
+          font-medium
+          text-gray-400
+        `,
+      
+        actions: `
+          mt-6
+          pt-5
+          border-t border-gray-100
+          flex
+          justify-end
+          gap-2
+        `,
+      
+        actionBtn: `
+          px-4 py-2
+          rounded-lg
+          text-sm
+          font-semibold
+          transition-all duration-200
+          border border-gray-200
+          hover:bg-gray-100
+        `,
+      
+        primaryBtn: `
+          px-4 py-2
+          rounded-lg
+          text-sm
+          font-semibold
+          bg-black
+          text-white
+          transition-all duration-200
+          hover:bg-gray-700
+          hover:-translate-y-px
+        `
+      },
       unregisteredDiv: {
         div: `p-5 flex flex-col gap-3 items-center [letter-spacing:2px]`,
         btn: `bg-pink-500 text-white p-5 rounded-xl hover:bg-pink-800 [transition:0.6s_ease] border`
