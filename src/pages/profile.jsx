@@ -96,10 +96,10 @@ export const InactiveProfile = () => {
 }
 
 export const AccountHandler = () => {
-  const [ channel, setChannel ] = useState("REGISTER");
+  const [ channel, setChannel ] = useState("none");
   return (
     <main className={styles.main}>
-      <div className=" shadow-xl p-5 rounded-2xl border border-2 border-[pink]">
+      <div className=" shadow-xl p-5 rounded-2xl border border-2 border-[pink] md:w-[75%] lg:w-[75%]">
         <div className="flex justify-center flex-col items-center border-b border-gray-200 pb-4">
           <h1 className={styles.title}>Lezada Account</h1>
           <nav className={styles.profile.accountHandler.nav}>
@@ -107,6 +107,20 @@ export const AccountHandler = () => {
             <a onClick={() => setChannel("LOGIN")} className={styles.profile.accountHandler.navBtn}>Login</a>
           </nav>
         </div>
+        {channel === "REGISTER" && (
+          <main className={styles.profile.accountHandler.main}>
+            <h1 className={styles.profile.accountHandler.title}>Register Account!</h1>
+            <form action="POST" className={styles.profile.accountHandler.form}>
+              <label htmlFor="Username" className={styles.profile.accountHandler.subtitle}>Username:</label>
+              <input type="text" className={styles.profile.accountHandler.inputs} placeholder="Leeyam" required/>
+              <label htmlFor="Email" className={styles.profile.accountHandler.subtitle}>Email:</label>
+              <input type="email" className={styles.profile.accountHandler.inputs} placeholder="leeyam@example.com" required/>
+              <label htmlFor="Password" className={styles.profile.accountHandler.subtitle}>Password:</label>
+              <input type="password" className={styles.profile.accountHandler.inputs} placeholder="#Scammer123!" required/>
+              <button type="submit" className={styles.profile.accountHandler.submitBtn}>Register</button>
+            </form>
+          </main>
+        )}
         
       </div>
     </main>
