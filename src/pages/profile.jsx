@@ -112,7 +112,27 @@ export const AccountHandler = () => {
     const username = formData.get("username");
     const email = formData.get("email");
     const password = formData.get("password");
+
+    async function validateAccount() {
+      const { data, error } = await supabase.from("accounts")
+      .select("*").eq("email", email)
+
+      if (error) {
+        alert(error.message);
+        return false;
+      } else if (data.length > 0) {
+        alert("Email already exists!");
+        return false;
+      }
+      return true;
+    }
+
+    const isValid = await validateAccount();
     
+    if(!isValid) {
+      setLoading(false);
+      return;
+    }
     const { data, error } = await supabase.from("accounts")
     .insert([{
       "username": username,
@@ -121,63 +141,68 @@ export const AccountHandler = () => {
     }])
 
     if (error) {
-      alert("Account successfully registered!");
+      alert(error.message);
     } else {
       alert("Success");
+      setChannel("LOGIN");
     }
-
     setLoading(false)
+    
+
   }
 
   return (
     <main className={styles.main}>
-      <div className=" shadow-xl p-5 rounded-2xl border border-2 border-[pink] md:w-[75%] lg:w-[75%]">
-        <div className="flex justify-center flex-col items-center border-b border-gray-200 pb-4">
-          <h1 className={styles.title}>Lezada Account</h1>
-          <nav className={styles.profile.accountHandler.nav}>
-            <a onClick={() => setChannel("REGISTER")} className={styles.profile.accountHandler.navBtn}>Register</a>
-            <a onClick={() => setChannel("LOGIN")} className={styles.profile.accountHandler.navBtn}>Login</a>
-          </nav>
+      <div className="flex justify-center items-center w-full">
+        <div className=" shadow-xl p-5 rounded-2xl border border-2 border-[pink] md:w-[75%] lg:w-[75%] w-full items-center justify-center">
+          <div className="flex justify-center flex-col items-center border-b border-gray-200 pb-4">
+            <h1 className={styles.title}>Lezada Account</h1>
+            <nav className={styles.profile.accountHandler.nav}>
+              <a onClick={() => setChannel("REGISTER")} className={styles.profile.accountHandler.navBtn}>Register</a>
+              <a onClick={() => setChannel("LOGIN")} className={styles.profile.accountHandler.navBtn}>Login</a>
+            </nav>
+          </div>
+
+          {channel === "REGISTER" && (
+            <main className={styles.profile.accountHandler.main}>
+              <h1 className={styles.profile.accountHandler.title}>Register Account!</h1>
+              <form onSubmit={registerHandler} action="POST" className={styles.profile.accountHandler.form}>
+
+                <label htmlFor="Username" className={styles.profile.accountHandler.subtitle}>Username:</label>
+                <input name="username" type="text" className={styles.profile.accountHandler.inputs} placeholder="Leeyam" required/>
+
+                <label htmlFor="Email" className={styles.profile.accountHandler.subtitle}>Email:</label>
+                <input name="email" type="email" className={styles.profile.accountHandler.inputs} placeholder="leeyam@example.com" required/>
+
+                <label htmlFor="Password" className={styles.profile.accountHandler.subtitle}>Password:</label>
+                <input name="password" type="password" className={styles.profile.accountHandler.inputs} placeholder="#Scammer123!" required/>
+
+                <button type="submit" className={styles.profile.accountHandler.submitBtn}>
+                  {loading ? "Registering" : "Register"}
+                </button>
+              </form>
+            </main>
+          )}
+
+          {channel === "LOGIN" && (
+            <main className={styles.profile.accountHandler.main}>
+              <h1 className={styles.profile.accountHandler.title}>Login Account!</h1>
+              <form action="POST" className={styles.profile.accountHandler.form}>
+
+                <label htmlFor="Email" className={styles.profile.accountHandler.subtitle}>Email:</label>
+                <input type="email" className={styles.profile.accountHandler.inputs} placeholder="leeyam@example.com" required/>
+
+                <label htmlFor="Password" className={styles.profile.accountHandler.subtitle}>Password:</label>
+                <input type="password" className={styles.profile.accountHandler.inputs} placeholder="#Scammer123!" required/>
+
+                <button type="submit" className={styles.profile.accountHandler.submitBtn}>Login</button>
+              </form>
+            </main>
+          )}
+          
         </div>
-
-        {channel === "REGISTER" && (
-          <main className={styles.profile.accountHandler.main}>
-            <h1 className={styles.profile.accountHandler.title}>Register Account!</h1>
-            <form onSubmit={registerHandler} action="POST" className={styles.profile.accountHandler.form}>
-
-              <label htmlFor="Username" className={styles.profile.accountHandler.subtitle}>Username:</label>
-              <input name="username" type="text" className={styles.profile.accountHandler.inputs} placeholder="Leeyam" required/>
-
-              <label htmlFor="Email" className={styles.profile.accountHandler.subtitle}>Email:</label>
-              <input name="email" type="email" className={styles.profile.accountHandler.inputs} placeholder="leeyam@example.com" required/>
-
-              <label htmlFor="Password" className={styles.profile.accountHandler.subtitle}>Password:</label>
-              <input name="password" type="password" className={styles.profile.accountHandler.inputs} placeholder="#Scammer123!" required/>
-
-              <button type="submit" className={styles.profile.accountHandler.submitBtn}>
-                {loading ? "Registering" : "Register"}
-              </button>
-            </form>
-          </main>
-        )}
-
-        {channel === "LOGIN" && (
-          <main className={styles.profile.accountHandler.main}>
-            <h1 className={styles.profile.accountHandler.title}>Login Account!</h1>
-            <form action="POST" className={styles.profile.accountHandler.form}>
-
-              <label htmlFor="Email" className={styles.profile.accountHandler.subtitle}>Email:</label>
-              <input type="email" className={styles.profile.accountHandler.inputs} placeholder="leeyam@example.com" required/>
-
-              <label htmlFor="Password" className={styles.profile.accountHandler.subtitle}>Password:</label>
-              <input type="password" className={styles.profile.accountHandler.inputs} placeholder="#Scammer123!" required/>
-
-              <button type="submit" className={styles.profile.accountHandler.submitBtn}>Login</button>
-            </form>
-          </main>
-        )}
-        
       </div>
+      
     </main>
   )
 }
