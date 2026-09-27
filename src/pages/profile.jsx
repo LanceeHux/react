@@ -24,6 +24,9 @@ export const ShowProfile = ({ loggedIn,
 }
 
 export const ActiveProfile = ({ username, user_id }) => {
+  const [purchasesCount, setPurchasesCount] = useState(0);
+  const [spentAmount, setSpentAmount] = useState(0.00)
+
   useEffect(() => {
     const TrackPurchases = async () => {
       const { data, error } = await supabase.from("purchases")
@@ -35,9 +38,21 @@ export const ActiveProfile = ({ username, user_id }) => {
       }
       setPurchasesCount(data.length)
     }
+
+    const TrackSpent = async () => {
+      const {data, error} = await supabase.from("purchases")
+      .select("*").eq("user_id", user_id)
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+      setSpentAmount()
+      // must finish
+    }
+
     TrackPurchases();
   }, [user_id])
-  const [purchasesCount, setPurchasesCount] = useState(0);
 
   return (
     <main className={styles.profile.activeProfile.main}>
@@ -145,7 +160,7 @@ export const ActiveProfile = ({ username, user_id }) => {
               <b>₱</b>
             </div>
 
-            <strong>₱0.00</strong>
+            <strong>₱{spentAmount}</strong>
 
             <small>
               Lifetime spending
