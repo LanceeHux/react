@@ -46,7 +46,7 @@ export default function App() {
       {/* PROFILE LOGIN */}
       {activeSection === "PROFILE" && isLoggedIn && <ActiveProfile/>}
       {activeSection === "PROFILE" && !isLoggedIn && <InactiveProfile/>}
-      {activeSection === "PROFILE" && !isLoggedIn && <AccountHandler/>}
+      
     </>
   )
 }

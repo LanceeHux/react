@@ -274,10 +274,10 @@ export const styles = {
         btn: `bg-pink-500 text-white p-5 rounded-xl hover:bg-pink-800 [transition:0.6s_ease] border`
       },
       accountHandler: {
-        nav: `p-3 rounded-xl shadow-lg flex w-[50%] justify-between`,
+        nav: `p-3 rounded-xl shadow-lg flex w-[75%] justify-between`,
         navBtn: `cursor-pointer [letter-spacing:2px] text-[gray] font-bold focus:underline`,
         title: `m-0 text-[clamp(15px,4vw,38px)] font-extrabold text-pink-500 [letter-spacing:2px] tracking-[-1.5px]`,
-        main: `flex flex-col justify-center items-center w-full`,
+        main: `flex flex-col justify-center items-center w-full [transition:0.6s_ease]`,
         form: `flex flex-col w-full p-3`,
         subtitle: ` text-md text-gray-500`,
         inputs: `p-2 border-b border-gray-300`,

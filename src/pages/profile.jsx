@@ -71,6 +71,8 @@ export const InactiveProfile = () => {
   const [ username, setUsername] = useState("Leeyam");
   const [ password, setPassword ] = useState("1234");
 
+  const [ showHandler, setShowHandler ] = useState(false);
+
   async function handleLogin() {
     const {data, error} = await supabase.from("accounts")
     .select("*").eq("username", username)
@@ -85,18 +87,48 @@ export const InactiveProfile = () => {
       alert("no matching accounts.")
     }
   }
-  return (
-  <main className={styles.main}>
-    <div className={styles.profile.unregisteredDiv.div}>
-      <h1>Login to your account to proceed.</h1>
-      <button onClick={() => handleLogin()} className={styles.profile.unregisteredDiv.btn}>test</button>
-    </div>
-  </main>
-  )
+    if (!showHandler) {
+      return (
+        <main className={styles.main}>
+      <div className={styles.profile.unregisteredDiv.div}>
+        <h1>Login to your account to proceed.</h1>
+        <button onClick={() => setShowHandler(true)} className={styles.profile.unregisteredDiv.btn}>Register / Login</button>
+      </div>
+    </main>
+      )
+    } 
+    return <AccountHandler />
 }
 
 export const AccountHandler = () => {
-  const [ channel, setChannel ] = useState("none");
+  const [ channel, setChannel ] = useState("REGISTER");
+  const [ loading, setLoading ] = useState(false);
+
+  const registerHandler = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(event.currentTarget);
+    const username = formData.get("username");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    
+    const { data, error } = await supabase.from("accounts")
+    .insert([{
+      "username": username,
+      "password": password,
+      "email": email
+    }])
+
+    if (error) {
+      alert("Account successfully registered!");
+    } else {
+      alert("Success");
+    }
+
+    setLoading(false)
+  }
+
   return (
     <main className={styles.main}>
       <div className=" shadow-xl p-5 rounded-2xl border border-2 border-[pink] md:w-[75%] lg:w-[75%]">
@@ -107,17 +139,40 @@ export const AccountHandler = () => {
             <a onClick={() => setChannel("LOGIN")} className={styles.profile.accountHandler.navBtn}>Login</a>
           </nav>
         </div>
+
         {channel === "REGISTER" && (
           <main className={styles.profile.accountHandler.main}>
             <h1 className={styles.profile.accountHandler.title}>Register Account!</h1>
-            <form action="POST" className={styles.profile.accountHandler.form}>
+            <form onSubmit={registerHandler} action="POST" className={styles.profile.accountHandler.form}>
+
               <label htmlFor="Username" className={styles.profile.accountHandler.subtitle}>Username:</label>
-              <input type="text" className={styles.profile.accountHandler.inputs} placeholder="Leeyam" required/>
+              <input name="username" type="text" className={styles.profile.accountHandler.inputs} placeholder="Leeyam" required/>
+
+              <label htmlFor="Email" className={styles.profile.accountHandler.subtitle}>Email:</label>
+              <input name="email" type="email" className={styles.profile.accountHandler.inputs} placeholder="leeyam@example.com" required/>
+
+              <label htmlFor="Password" className={styles.profile.accountHandler.subtitle}>Password:</label>
+              <input name="password" type="password" className={styles.profile.accountHandler.inputs} placeholder="#Scammer123!" required/>
+
+              <button type="submit" className={styles.profile.accountHandler.submitBtn}>
+                {loading ? "Registering" : "Register"}
+              </button>
+            </form>
+          </main>
+        )}
+
+        {channel === "LOGIN" && (
+          <main className={styles.profile.accountHandler.main}>
+            <h1 className={styles.profile.accountHandler.title}>Login Account!</h1>
+            <form action="POST" className={styles.profile.accountHandler.form}>
+
               <label htmlFor="Email" className={styles.profile.accountHandler.subtitle}>Email:</label>
               <input type="email" className={styles.profile.accountHandler.inputs} placeholder="leeyam@example.com" required/>
+
               <label htmlFor="Password" className={styles.profile.accountHandler.subtitle}>Password:</label>
               <input type="password" className={styles.profile.accountHandler.inputs} placeholder="#Scammer123!" required/>
-              <button type="submit" className={styles.profile.accountHandler.submitBtn}>Register</button>
+
+              <button type="submit" className={styles.profile.accountHandler.submitBtn}>Login</button>
             </form>
           </main>
         )}
