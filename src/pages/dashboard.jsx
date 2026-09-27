@@ -48,6 +48,11 @@ const items = [
 ]
 
 async function buyItem(item, { user_id }) {
+
+     if (!user_id) {
+        alert("Login first!");
+        return;
+    }
     const { data, error } = await supabase.from("purchases").insert([{
         "item_name": item.name,
         "user_id": user_id

@@ -18,12 +18,27 @@ export const ShowProfile = ({ loggedIn,
   if (!loggedIn) {
     return <InactiveProfile setLoggedIn={setLoggedIn} setUsername={setUsername} setUser_id={setUser_id} />
   } else {
-    return <ActiveProfile username={username}/>
+    return <ActiveProfile username={username} user_id={user_id}/>
   }
   
 }
 
-export const ActiveProfile = ({ username }) => {
+export const ActiveProfile = ({ username, user_id }) => {
+  useEffect(() => {
+    const TrackPurchases = async () => {
+      const { data, error } = await supabase.from("purchases")
+      .select("*").eq("user_id", user_id);
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+      setPurchasesCount(data.length)
+    }
+    TrackPurchases();
+  }, [user_id])
+  const [purchasesCount, setPurchasesCount] = useState(0);
+
   return (
     <main className={styles.profile.activeProfile.main}>
 
@@ -116,7 +131,7 @@ export const ActiveProfile = ({ username }) => {
               <b>↗</b>
             </div>
 
-            <strong>0</strong>
+            <strong>{purchasesCount}</strong>
 
             <small>
               Total items purchased
