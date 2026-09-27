@@ -27,145 +27,185 @@ export const ActiveProfile = ({ username }) => {
   return (
     <main className={styles.profile.activeProfile.main}>
 
-      {/* Hero */}
-      <section className={styles.profile.activeProfile.hero}>
+      {/* Profile Sidebar */}
+      <aside className={styles.profile.activeProfile.sidebar}>
 
-        <div className={styles.profile.activeProfile.banner} />
-
-        <div className={styles.profile.activeProfile.profileHolder}>
-
+        <div className={styles.profile.activeProfile.avatarWrapper}>
           <img
             className={styles.profile.activeProfile.profileImg}
             src={user.profileImg}
             alt={user.name}
           />
 
-          <div className={styles.profile.activeProfile.identity}>
+          <span className={styles.profile.activeProfile.onlineDot} />
+        </div>
 
-            <div>
-              <p className={styles.profile.activeProfile.eyebrow}>
-                ACCOUNT
-              </p>
+        <div className={styles.profile.activeProfile.identity}>
+          <h1 className={styles.profile.activeProfile.name}>
+            {username}
+          </h1>
 
-              <h1 className={styles.profile.activeProfile.name}>
-                {username}
-              </h1>
+          <p className={styles.profile.activeProfile.role}>
+            Lezada Buyer
+          </p>
+        </div>
 
-              <p className={styles.profile.activeProfile.role}>
-                Lezada Buyer
-              </p>
-            </div>
+        <div className={styles.profile.activeProfile.memberBadge}>
+          <span>✦</span>
+          Member
+        </div>
 
-            <span className={styles.profile.activeProfile.statusBadge}>
-              Active
-            </span>
+        <nav className={styles.profile.activeProfile.sideNav}>
 
+          <button className={styles.profile.activeProfile.sideNavActive}>
+            <span>▦</span>
+            Overview
+          </button>
+
+          <button className={styles.profile.activeProfile.sideNavBtn}>
+            <span>◷</span>
+            Purchases
+          </button>
+
+          <button className={styles.profile.activeProfile.sideNavBtn}>
+            <span>⚙</span>
+            Settings
+          </button>
+
+        </nav>
+
+        <button className={styles.profile.activeProfile.editBtn}>
+          Edit Profile
+        </button>
+
+      </aside>
+
+
+      {/* Main Content */}
+      <section className={styles.profile.activeProfile.content}>
+
+        <header className={styles.profile.activeProfile.header}>
+
+          <div>
+            <p className={styles.profile.activeProfile.eyebrow}>
+              MY ACCOUNT
+            </p>
+
+            <h2 className={styles.profile.activeProfile.title}>
+              Welcome back, {username}
+            </h2>
+
+            <p className={styles.profile.activeProfile.subtitle}>
+              Here's what's happening with your Lezada account.
+            </p>
           </div>
 
-        </div>
-      </section>
+          <span className={styles.profile.activeProfile.statusBadge}>
+            ● Active
+          </span>
+
+        </header>
 
 
-      {/* Dashboard */}
-      <section className={styles.profile.activeProfile.dashboard}>
-
-        {/* Statistics */}
+        {/* Stats */}
         <div className={styles.profile.activeProfile.stats}>
 
           <div className={styles.profile.activeProfile.statCard}>
-            <div className={styles.profile.activeProfile.statIcon}>
-              🛍
+            <div className={styles.profile.activeProfile.statTop}>
+              <span>Purchases</span>
+              <b>↗</b>
             </div>
 
-            <div>
-              <p className={styles.profile.activeProfile.statLabel}>
-                Purchases
-              </p>
+            <strong>0</strong>
 
-              <p className={styles.profile.activeProfile.statValue}>
-                0
-              </p>
-            </div>
+            <small>
+              Total items purchased
+            </small>
           </div>
 
 
           <div className={styles.profile.activeProfile.statCard}>
-            <div className={styles.profile.activeProfile.statIcon}>
-              ₱
+            <div className={styles.profile.activeProfile.statTop}>
+              <span>Total Spent</span>
+              <b>₱</b>
             </div>
 
-            <div>
-              <p className={styles.profile.activeProfile.statLabel}>
-                Total Spent
-              </p>
+            <strong>₱0.00</strong>
 
-              <p className={styles.profile.activeProfile.statValue}>
-                ₱0.00
-              </p>
-            </div>
+            <small>
+              Lifetime spending
+            </small>
           </div>
 
         </div>
 
 
-        {/* Account Overview */}
-        <div className={styles.profile.activeProfile.overview}>
+        {/* Account */}
+        <section className={styles.profile.activeProfile.accountCard}>
 
-          <div>
-            <p className={styles.profile.activeProfile.sectionLabel}>
-              Account Overview
-            </p>
+          <div className={styles.profile.activeProfile.cardHeader}>
+            <div>
+              <p>ACCOUNT INFORMATION</p>
+              <h3>Personal details</h3>
+            </div>
 
-            <h2 className={styles.profile.activeProfile.sectionTitle}>
-              Your Lezada account
-            </h2>
-
-            <p className={styles.profile.activeProfile.sectionDescription}>
-              Manage your profile and keep track of your purchases.
-            </p>
+            <button>
+              Edit
+            </button>
           </div>
 
-          <div className={styles.profile.activeProfile.accountDetails}>
 
-            <div>
+          <div className={styles.profile.activeProfile.detailsGrid}>
+
+            <div className={styles.profile.activeProfile.detail}>
+              <span>Username</span>
+              <strong>{username}</strong>
+            </div>
+
+            <div className={styles.profile.activeProfile.detail}>
+              <span>Account type</span>
+              <strong>Buyer</strong>
+            </div>
+
+            <div className={styles.profile.activeProfile.detail}>
               <span>Email</span>
               <strong>Hidden</strong>
             </div>
 
-            <div>
-              <span>Account Type</span>
-              <strong>Buyer</strong>
-            </div>
-
-            <div>
+            <div className={styles.profile.activeProfile.detail}>
               <span>Status</span>
-              <strong>Active</strong>
+              <strong className={styles.profile.activeProfile.activeText}>
+                Active
+              </strong>
             </div>
 
           </div>
 
-        </div>
+        </section>
 
 
-        {/* Actions */}
-        <div className={styles.profile.activeProfile.actions}>
+        {/* Bottom */}
+        <section className={styles.profile.activeProfile.purchaseCard}>
 
-          <button className={styles.profile.activeProfile.actionBtn}>
-            Edit Profile
+          <div>
+            <p>YOUR PURCHASES</p>
+            <h3>Nothing here yet</h3>
+            <span>
+              Products you purchase will appear here.
+            </span>
+          </div>
+
+          <button>
+            Browse Marketplace →
           </button>
 
-          <button className={styles.profile.activeProfile.primaryBtn}>
-            My Purchases
-          </button>
-
-        </div>
+        </section>
 
       </section>
 
     </main>
   )
 }
-
 
 export const InactiveProfile = ({ setLoggedIn, setUsername, setUser_id }) => {
 

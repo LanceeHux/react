@@ -39,12 +39,12 @@ export default function App() {
     
 
       {/* DASHBOARD */}
-      {activeSection === "DASHBOARD" && <Dashboard/>}
+      {activeSection === "DASHBOARD" && <Dashboard user_id={user_id}/>}
 
       {/* MY_CART LOGIN */}
       {activeSection === "MY_CART" && loggedIn === true && <MyCart/>}
       {/* MY_CART LOGOUT */}
-      {activeSection === "MY_CART" && <Dashboard/>}
+      {activeSection === "MY_CART" && <Dashboard user_id={user_id}/>}
 
       {/* PROFILE LOGIN */}
       {activeSection === "PROFILE" && <ShowProfile username={username} setUsername={setUsername} user_id={user_id} setUser_id={setUser_id} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}
