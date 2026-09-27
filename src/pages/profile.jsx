@@ -24,67 +24,148 @@ export const ShowProfile = ({ loggedIn,
 }
 
 export const ActiveProfile = ({ username }) => {
-
   return (
-    <>
-    <main>
-        <div className={styles.profile.activeProfile.main}>
-          {/* Banner */}
-          <div className={styles.profile.activeProfile.banner} />
-          {/* Profile information */}
-          <div className={styles.profile.activeProfile.profileHolder}>
-            <img
-              className={styles.profile.activeProfile.profileImg}
-              src={user.profileImg}
-              alt={user.name}
-            />
-            <div className={styles.profile.activeProfile.userInfo}>
-              <div>
-                <h1 className={styles.profile.activeProfile.name}>
-                  {username}
-                </h1>
-                <p className={styles.profile.activeProfile.role}>
-                  Lezada Buyer
-                </p>
-              </div>
-              <span className={styles.profile.activeProfile.statusBadge}>
-                Buyer
-              </span>
+    <main className={styles.profile.activeProfile.main}>
+
+      {/* Hero */}
+      <section className={styles.profile.activeProfile.hero}>
+
+        <div className={styles.profile.activeProfile.banner} />
+
+        <div className={styles.profile.activeProfile.profileHolder}>
+
+          <img
+            className={styles.profile.activeProfile.profileImg}
+            src={user.profileImg}
+            alt={user.name}
+          />
+
+          <div className={styles.profile.activeProfile.identity}>
+
+            <div>
+              <p className={styles.profile.activeProfile.eyebrow}>
+                ACCOUNT
+              </p>
+
+              <h1 className={styles.profile.activeProfile.name}>
+                {username}
+              </h1>
+
+              <p className={styles.profile.activeProfile.role}>
+                Lezada Buyer
+              </p>
             </div>
-            {/* Statistics */}
-            <div className={styles.profile.activeProfile.stats}>
-              <div className={styles.profile.activeProfile.statCard}>
-                <p className={styles.profile.activeProfile.statValue}>
-                  0
-                </p>
-                <p className={styles.profile.activeProfile.statLabel}>
-                  Items Purchased
-                </p>
-              </div>
-              <div className={styles.profile.activeProfile.statCard}>
-                <p className={styles.profile.activeProfile.statValue}>
-                  ₱0.00
-                </p>
-                <p className={styles.profile.activeProfile.statLabel}>
-                  Total Spent
-                </p>
-              </div>
+
+            <span className={styles.profile.activeProfile.statusBadge}>
+              Active
+            </span>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* Dashboard */}
+      <section className={styles.profile.activeProfile.dashboard}>
+
+        {/* Statistics */}
+        <div className={styles.profile.activeProfile.stats}>
+
+          <div className={styles.profile.activeProfile.statCard}>
+            <div className={styles.profile.activeProfile.statIcon}>
+              🛍
             </div>
-            {/* Actions */}
-            <div className={styles.profile.activeProfile.actions}>
-              <button className={styles.profile.activeProfile.actionBtn}>
-                Edit Profile
-              </button>
-              <button className={styles.profile.activeProfile.primaryBtn}>
-                My Purchases
-              </button>
+
+            <div>
+              <p className={styles.profile.activeProfile.statLabel}>
+                Purchases
+              </p>
+
+              <p className={styles.profile.activeProfile.statValue}>
+                0
+              </p>
             </div>
           </div>
+
+
+          <div className={styles.profile.activeProfile.statCard}>
+            <div className={styles.profile.activeProfile.statIcon}>
+              ₱
+            </div>
+
+            <div>
+              <p className={styles.profile.activeProfile.statLabel}>
+                Total Spent
+              </p>
+
+              <p className={styles.profile.activeProfile.statValue}>
+                ₱0.00
+              </p>
+            </div>
+          </div>
+
         </div>
-      </main>
-    </>
+
+
+        {/* Account Overview */}
+        <div className={styles.profile.activeProfile.overview}>
+
+          <div>
+            <p className={styles.profile.activeProfile.sectionLabel}>
+              Account Overview
+            </p>
+
+            <h2 className={styles.profile.activeProfile.sectionTitle}>
+              Your Lezada account
+            </h2>
+
+            <p className={styles.profile.activeProfile.sectionDescription}>
+              Manage your profile and keep track of your purchases.
+            </p>
+          </div>
+
+          <div className={styles.profile.activeProfile.accountDetails}>
+
+            <div>
+              <span>Email</span>
+              <strong>Hidden</strong>
+            </div>
+
+            <div>
+              <span>Account Type</span>
+              <strong>Buyer</strong>
+            </div>
+
+            <div>
+              <span>Status</span>
+              <strong>Active</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* Actions */}
+        <div className={styles.profile.activeProfile.actions}>
+
+          <button className={styles.profile.activeProfile.actionBtn}>
+            Edit Profile
+          </button>
+
+          <button className={styles.profile.activeProfile.primaryBtn}>
+            My Purchases
+          </button>
+
+        </div>
+
+      </section>
+
+    </main>
   )
 }
+
 
 export const InactiveProfile = ({ setLoggedIn, setUsername, setUser_id }) => {
 
@@ -107,9 +188,9 @@ export const InactiveProfile = ({ setLoggedIn, setUsername, setUser_id }) => {
     if (!showHandler) {
       return (
         <main className={styles.main}>
-      <div className={styles.profile.unregisteredDiv.div}>
+      <div className={styles.profile.inactiveProfile.unregisteredDiv.div}>
         <h1>Login to your account to proceed.</h1>
-        <button onClick={() => setShowHandler(true)} className={styles.profile.unregisteredDiv.btn}>Register / Login</button>
+        <button onClick={() => setShowHandler(true)} className={styles.profile.inactiveProfile.unregisteredDiv.btn}>Register / Login</button>
       </div>
     </main>
       )
