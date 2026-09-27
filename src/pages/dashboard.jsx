@@ -9,6 +9,14 @@ const items = [
     {name: "Keychain Dog", price: 9.81, desc: "A cute fancy keychain dog", img: "/images/L.png", sold: 132}
 ];
 
+function showItem(itema) {
+    return (
+        <div className={styles.main}>
+            <h1>{itema.name}</h1>
+        </div>
+    )
+}
+
 export default function Dashboard() {
     return (
         <main className={styles.main}>
@@ -25,9 +33,10 @@ export default function Dashboard() {
             </div>
             <section className={styles.itemGrid}>
             {items.map((item, index) => (
-                <article
+                <a
                     key={index}
                     className={styles.itemCard}
+                    onClick={() => showItem(item)}
                 >
                     <div className={styles.imageContainer}>
                     <img
@@ -62,7 +71,7 @@ export default function Dashboard() {
                             </button>
                         </div>
                     </div>
-                </article>
+                </a>
                 ))}
             </section>
         </main>
