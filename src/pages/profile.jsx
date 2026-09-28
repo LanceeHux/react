@@ -22,6 +22,7 @@ export const ActiveProfile = ({ username, user_id, }) => {
   const [purchasesCount, setPurchasesCount] = useState(0);
   const [spentAmount, setSpentAmount] = useState(0.00)
   const [purchases, setPurchases] = useState([])
+  const badges = [];
 
   useEffect(() => {
     const TrackPurchases = async () => {
@@ -38,6 +39,18 @@ export const ActiveProfile = ({ username, user_id, }) => {
 
     TrackPurchases();
   }, [user_id])
+
+  const showBadges = () => {
+    
+    if (purchasesCount >= 5 && purchasesCount < 10) {
+      return (
+        <div className={styles.profile.activeProfile.memberBadge}>
+          <span>✦</span>
+          Suki {purchasesCount}
+        </div>
+      )
+    }
+  }
 
   return (
     <main className={styles.profile.activeProfile.main}>
@@ -64,10 +77,9 @@ export const ActiveProfile = ({ username, user_id, }) => {
             Lezada Buyer
           </p>
         </div>
-
-        <div className={styles.profile.activeProfile.memberBadge}>
-          <span>✦</span>
-          Member
+        
+        <div>
+          {showBadges()}
         </div>
 
         <nav className={styles.profile.activeProfile.sideNav}>

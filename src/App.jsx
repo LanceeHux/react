@@ -4,7 +4,7 @@ import { styles } from "./App"
 
 import Dashboard from "./pages/dashboard"
 import MyCart from "./pages/mycart"
-import { ActiveProfile, InactiveProfile, AccountHandler, ShowProfile } from "./pages/profile"
+import { ShowProfile } from "./pages/profile"
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -13,6 +13,7 @@ export default function App() {
 
   let [activeSection, setSection] = useState("PROFILE");
   let [nav, openNav] = useState(false)
+
   return (
     <>
     <header className={styles.header}>
@@ -37,14 +38,9 @@ export default function App() {
     )}
     
     
-
+      
       {/* DASHBOARD */}
       {activeSection === "DASHBOARD" && <Dashboard user_id={user_id}/>}
-
-      {/* MY_CART LOGIN */}
-      {activeSection === "MY_CART" && loggedIn === true && <MyCart/>}
-      {/* MY_CART LOGOUT */}
-      {activeSection === "MY_CART" && <Dashboard user_id={user_id}/>}
 
       {/* PROFILE LOGIN */}
       {activeSection === "PROFILE" && <ShowProfile username={username} setUsername={setUsername} user_id={user_id} setUser_id={setUser_id} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}
