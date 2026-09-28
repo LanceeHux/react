@@ -56,6 +56,7 @@ async function buyItem(item, { user_id }) {
     const { data, error } = await supabase.from("purchases").insert([{
         "item_name": item.name,
         "item_price": item.price,
+        "item_img": item.img,
         "user_id": user_id
     }]);
 

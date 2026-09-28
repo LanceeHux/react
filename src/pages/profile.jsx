@@ -8,12 +8,7 @@ const user = {
   password: ""
 }
 
-export const ShowProfile = ({ loggedIn,
-  setLoggedIn,
-  username,
-  setUsername,
-  user_id,
-  setUser_id }) => {
+export const ShowProfile = ({ loggedIn, setLoggedIn, username, setUsername, user_id, setUser_id }) => {
 
   if (!loggedIn) {
     return <InactiveProfile setLoggedIn={setLoggedIn} setUsername={setUsername} setUser_id={setUser_id} />
@@ -23,7 +18,7 @@ export const ShowProfile = ({ loggedIn,
   
 }
 
-export const ActiveProfile = ({ username, user_id }) => {
+export const ActiveProfile = ({ username, user_id, }) => {
   const [purchasesCount, setPurchasesCount] = useState(0);
   const [spentAmount, setSpentAmount] = useState(0.00)
   const [purchases, setPurchases] = useState([])
@@ -42,7 +37,6 @@ export const ActiveProfile = ({ username, user_id }) => {
     }
 
     TrackPurchases();
-    TrackSpentAmount();
   }, [user_id])
 
   return (
@@ -209,19 +203,24 @@ export const ActiveProfile = ({ username, user_id }) => {
         <section className={styles.profile.activeProfile.purchaseCard}>
           <div>
             <p>YOUR PURCHASES</p>
-            <div className="grid grid-col-2">
+            <div className="grid
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-3
+            gap-5 ">
               {purchases.map(item => {
                   return (
-                    <div key={item.id}>
-                      <img src={} alt="" />
-                      {/* must finish */}
+                    <div key={item.id} className='p-3 rounded-md'>
+                      <img src={`${item.item_img}`} alt="" className=''/>
+                      <h1>{item.item_name}</h1>
                     </div>
                   )
                })}
             </div>
             <span>Products you purchase will appear here.</span>
+            <button>Browse Marketplace →</button>
           </div>
-          <button>Browse Marketplace →</button>
+          
         </section>
       </section>
     </main>
