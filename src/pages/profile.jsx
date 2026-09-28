@@ -41,15 +41,16 @@ export const ActiveProfile = ({ username, user_id, }) => {
   }, [user_id])
 
   const showBadges = () => {
-    
-    if (purchasesCount >= 5 && purchasesCount < 10) {
-      return (
-        <div className={styles.profile.activeProfile.memberBadge}>
-          <span>✦</span>
-          Suki {purchasesCount}
-        </div>
-      )
+    if (purchasesCount >= 5) {
+      badges.push({achievement: "suki level 1"})
     }
+
+    return badges.map((badge, index) => {
+      <>
+      <div key={index}>
+        {badge.achievement}</div>
+      </>
+    })
   }
 
   return (
