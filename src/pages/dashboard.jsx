@@ -55,6 +55,7 @@ async function buyItem(item, { user_id }) {
     }
     const { data, error } = await supabase.from("purchases").insert([{
         "item_name": item.name,
+        "item_price": item.price,
         "user_id": user_id
     }]);
 
@@ -63,7 +64,7 @@ async function buyItem(item, { user_id }) {
         return;
     }
 
-    alert(`${item.name} bought for ${item.price}`);
+    alert(`${item.name} bought for ₱${item.price}`);
 
 }
 

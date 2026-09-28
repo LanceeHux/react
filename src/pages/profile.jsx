@@ -26,12 +26,12 @@ export const ShowProfile = ({ loggedIn,
 export const ActiveProfile = ({ username, user_id }) => {
   const [purchasesCount, setPurchasesCount] = useState(0);
   const [spentAmount, setSpentAmount] = useState(0.00)
+  const [purchases, setPurchases] = useState([])
 
   useEffect(() => {
     const TrackPurchases = async () => {
       const { data, error } = await supabase.from("purchases")
       .select("*").eq("user_id", user_id);
-
       if (error) {
         alert(error.message);
         return;
@@ -39,19 +39,29 @@ export const ActiveProfile = ({ username, user_id }) => {
       setPurchasesCount(data.length)
     }
 
-    const TrackSpent = async () => {
-      const {data, error} = await supabase.from("purchases")
-      .select("*").eq("user_id", user_id)
 
+    const TrackSpentAmount = async () => {
+      const { data, error } = await supabase.from("purchases")
+      .select("*").eq("user_id", user_id)
       if (error) {
         alert(error.message);
         return;
       }
-      setSpentAmount()
-      // must finish
+      setSpentAmount(data.reduce((total,sum) => total+sum.item_price,0))
+    }
+
+    const TrackPurchasesItems = async () => {
+      const { data, error } = await supabase.from("purchases")
+      .select("*").eq("user_id", user_id)
+      if(error) {
+        alert(error.message)
+        return;
+      }
+      setPurchases(data);
     }
 
     TrackPurchases();
+    TrackSpentAmount()
   }, [user_id])
 
   return (
@@ -216,29 +226,27 @@ export const ActiveProfile = ({ username, user_id }) => {
 
         {/* Bottom */}
         <section className={styles.profile.activeProfile.purchaseCard}>
-
           <div>
             <p>YOUR PURCHASES</p>
-            <h3>Nothing here yet</h3>
-            <span>
-              Products you purchase will appear here.
-            </span>
+            <div>
+              {purchases.map((item, index) => {
+                <>
+                <div key={index}>
+                  <h1>{item.item_name}</h1>
+                </div>
+                </>
+              })}
+            </div>
+            <span>Products you purchase will appear here.</span>
           </div>
-
-          <button>
-            Browse Marketplace →
-          </button>
-
+          <button>Browse Marketplace →</button>
         </section>
-
       </section>
-
     </main>
   )
 }
 
 export const InactiveProfile = ({ setLoggedIn, setUsername, setUser_id }) => {
-
   const [ showHandler, setShowHandler ] = useState(false);
 
   async function handleLogin() {

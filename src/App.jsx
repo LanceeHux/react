@@ -28,7 +28,7 @@ export default function App() {
     </header>
     {nav === true && (
       <div className="flex justify-end relative [z-index:999]">
-      <nav className="flex flex-col p-3 items-end absolute bg-[gray] rounded-xl m-2">
+      <nav className="flex flex-col p-3 items-end absolute bg-[gray] rounded-xl m-2 fixed md:hidden lg:hidden">
         <a onClick={() => setSection("DASHBOARD")} className={styles.mobileNavBtn}>Dashboard</a>
         <a onClick={() => setSection("MY_CART")} className={styles.mobileNavBtn}>My Cart</a>
         <a onClick={() => setSection("PROFILE")} className={styles.mobileNavBtn}>Profile</a>

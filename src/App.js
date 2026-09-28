@@ -795,7 +795,7 @@ export const styles = {
           mt-4
           p-6
           rounded-2xl
-          bg-gray-950
+          bg-gray-100
           flex
           flex-col
           sm:flex-row
