@@ -36,32 +36,13 @@ export const ActiveProfile = ({ username, user_id }) => {
         alert(error.message);
         return;
       }
-      setPurchasesCount(data.length)
-    }
-
-
-    const TrackSpentAmount = async () => {
-      const { data, error } = await supabase.from("purchases")
-      .select("*").eq("user_id", user_id)
-      if (error) {
-        alert(error.message);
-        return;
-      }
       setSpentAmount(data.reduce((total,sum) => total+sum.item_price,0))
-    }
-
-    const TrackPurchasesItems = async () => {
-      const { data, error } = await supabase.from("purchases")
-      .select("*").eq("user_id", user_id)
-      if(error) {
-        alert(error.message)
-        return;
-      }
-      setPurchases(data);
+      setPurchasesCount(data.length)
+      setPurchases(data)
     }
 
     TrackPurchases();
-    TrackSpentAmount()
+    TrackSpentAmount();
   }, [user_id])
 
   return (
@@ -228,14 +209,15 @@ export const ActiveProfile = ({ username, user_id }) => {
         <section className={styles.profile.activeProfile.purchaseCard}>
           <div>
             <p>YOUR PURCHASES</p>
-            <div>
-              {purchases.map((item, index) => {
-                <>
-                <div key={index}>
-                  <h1>{item.item_name}</h1>
-                </div>
-                </>
-              })}
+            <div className="grid grid-col-2">
+              {purchases.map(item => {
+                  return (
+                    <div key={item.id}>
+                      <img src={} alt="" />
+                      {/* must finish */}
+                    </div>
+                  )
+               })}
             </div>
             <span>Products you purchase will appear here.</span>
           </div>
