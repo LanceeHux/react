@@ -57,6 +57,7 @@ async function buyItem(item, { user_id }) {
         "item_name": item.name,
         "item_price": item.price,
         "item_img": item.img,
+        "item_description": item.desc,
         "user_id": user_id
     }]);
 

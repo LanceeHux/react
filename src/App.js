@@ -435,6 +435,11 @@ export const styles = {
 
     profile: {
       activeProfile: {
+
+        /* ================================
+           MAIN PROFILE CONTAINER
+        ================================= */
+      
         main: `
           w-[94%]
           max-w-6xl
@@ -442,62 +447,66 @@ export const styles = {
           my-8
           grid
           grid-cols-1
-          lg:grid-cols-[250px_1fr]
+          lg:grid-cols-[240px_1fr]
           overflow-hidden
-          bg-white
+          rounded-[30px]
           border
           border-gray-200
-          rounded-[28px]
-          shadow-[0_25px_80px_rgba(0,0,0,0.07)]
+          bg-white
+          shadow-[0_30px_90px_rgba(0,0,0,0.06)]
         `,
-
-
-        /* SIDEBAR */
-
+      
+      
+        /* ================================
+           SIDEBAR
+        ================================= */
+      
         sidebar: `
           relative
           flex
           flex-col
+          min-h-[520px]
+          lg:min-h-[680px]
           p-6
           bg-gray-950
           text-white
-          lg:min-h-[650px]
         `,
-
+      
         avatarWrapper: `
           relative
           w-fit
           mx-auto
           lg:mx-0
         `,
-
+      
         profileImg: `
           size-20
-          rounded-[24px]
+          rounded-[22px]
           object-cover
-          border-4
+          border-[3px]
           border-gray-800
-          bg-gray-800
-          shadow-xl
+          bg-gray-900
+          shadow-[0_10px_30px_rgba(0,0,0,0.3)]
         `,
-
+      
         onlineDot: `
           absolute
-          right-1
-          bottom-1
+          right-0
+          bottom-0
           size-4
           rounded-full
           bg-emerald-400
           border-[3px]
           border-gray-950
+          shadow-[0_0_0_2px_rgba(52,211,153,0.15)]
         `,
-
+      
         identity: `
-          mt-4
+          mt-5
           text-center
           lg:text-left
         `,
-
+      
         name: `
           m-0
           text-xl
@@ -506,14 +515,14 @@ export const styles = {
           text-white
           break-all
         `,
-
+      
         role: `
           mt-1
           text-xs
           font-medium
           text-gray-500
         `,
-
+      
         memberBadge: `
           mx-auto
           lg:mx-0
@@ -525,31 +534,34 @@ export const styles = {
           px-3
           py-1.5
           rounded-full
-          bg-white/10
+          bg-white/[0.06]
           border
-          border-white/10
-          text-[10px]
+          border-white/[0.08]
+          text-[9px]
           font-bold
           uppercase
-          tracking-wider
-          text-gray-300
+          tracking-[1.5px]
+          text-gray-400
         `,
-
+      
         memberBadgeIcon: `
           text-pink-400
         `,
-
-
-        /* SIDEBAR NAV */
-
+      
+      
+        /* ================================
+           SIDEBAR NAVIGATION
+        ================================= */
+      
         sideNav: `
-          mt-8
+          mt-10
           flex
           flex-col
           gap-1
         `,
-
+      
         sideNavActive: `
+          relative
           flex
           items-center
           gap-3
@@ -562,8 +574,9 @@ export const styles = {
           text-sm
           font-bold
           text-left
+          shadow-[0_8px_20px_rgba(0,0,0,0.12)]
         `,
-
+      
         sideNavBtn: `
           flex
           items-center
@@ -579,13 +592,16 @@ export const styles = {
           text-left
           transition-all
           duration-200
-          hover:bg-white/5
+          hover:bg-white/[0.06]
           hover:text-white
+          hover:translate-x-0.5
         `,
-
-
-        /* EDIT */
-
+      
+      
+        /* ================================
+           EDIT PROFILE
+        ================================= */
+      
         editBtn: `
           mt-auto
           w-full
@@ -599,51 +615,60 @@ export const styles = {
           duration-200
           hover:bg-pink-400
           hover:-translate-y-0.5
-          hover:shadow-[0_10px_25px_rgba(236,72,153,0.3)]
+          hover:shadow-[0_12px_30px_rgba(236,72,153,0.3)]
+          active:translate-y-0
         `,
-
-
-        /* CONTENT */
-
+      
+      
+        /* ================================
+           MAIN CONTENT
+        ================================= */
+      
         content: `
           min-w-0
-          p-6
+          p-5
+          sm:p-7
           md:p-9
           bg-[#fafafa]
         `,
-
+      
         header: `
           flex
           flex-col
           sm:flex-row
-          sm:items-start
+          sm:items-end
           sm:justify-between
           gap-5
         `,
-
+      
         eyebrow: `
           mb-2
-          text-[10px]
+          text-[9px]
           font-black
+          uppercase
           tracking-[3px]
           text-pink-500
         `,
-
+      
         title: `
           m-0
-          text-[clamp(24px,4vw,36px)]
+          text-[clamp(26px,4vw,38px)]
           font-black
-          tracking-[-1.5px]
+          leading-none
+          tracking-[-1.8px]
           text-gray-950
         `,
-
+      
         subtitle: `
-          mt-2
+          mt-3
+          max-w-xl
           text-sm
+          leading-6
           text-gray-400
         `,
-
+      
         statusBadge: `
+          shrink-0
           w-fit
           px-3
           py-1.5
@@ -651,15 +676,18 @@ export const styles = {
           bg-emerald-50
           border
           border-emerald-100
-          text-[10px]
+          text-[9px]
           font-bold
-          tracking-wider
+          uppercase
+          tracking-[1.5px]
           text-emerald-600
         `,
-
-
-        /* STATS */
-
+      
+      
+        /* ================================
+           STAT CARDS
+        ================================= */
+      
         stats: `
           grid
           grid-cols-1
@@ -667,8 +695,10 @@ export const styles = {
           gap-4
           mt-8
         `,
-
+      
         statCard: `
+          relative
+          overflow-hidden
           p-5
           rounded-2xl
           bg-white
@@ -677,41 +707,51 @@ export const styles = {
           transition-all
           duration-300
           hover:-translate-y-1
-          hover:shadow-[0_12px_35px_rgba(0,0,0,0.06)]
+          hover:border-gray-300
+          hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)]
         `,
-
+      
         statTop: `
           flex
           items-center
           justify-between
-          text-xs
+          text-[10px]
           font-bold
+          uppercase
+          tracking-wider
           text-gray-400
         `,
-
+      
         statValue: `
+          mt-2
           text-2xl
           font-black
+          tracking-tight
           text-gray-950
         `,
-
+      
         statSmall: `
+          mt-1
           text-[11px]
           text-gray-400
         `,
-
-
-        /* ACCOUNT CARD */
-
+      
+      
+        /* ================================
+           ACCOUNT CARD
+        ================================= */
+      
         accountCard: `
           mt-4
-          p-6
+          p-5
+          sm:p-6
           rounded-2xl
           bg-white
           border
           border-gray-200
+          shadow-[0_4px_20px_rgba(0,0,0,0.02)]
         `,
-
+      
         cardHeader: `
           flex
           items-center
@@ -721,122 +761,245 @@ export const styles = {
           border-b
           border-gray-100
         `,
-
+      
         cardHeaderLabel: `
           text-[9px]
           font-black
+          uppercase
           tracking-[2px]
           text-pink-500
         `,
-
+      
         cardHeaderTitle: `
           mt-1
           text-lg
           font-extrabold
+          tracking-tight
           text-gray-950
         `,
-
+      
         cardHeaderBtn: `
+          shrink-0
           px-3
           py-1.5
           rounded-lg
           bg-gray-50
           border
           border-gray-200
-          text-xs
+          text-[10px]
           font-bold
           text-gray-600
           transition-all
+          duration-200
           hover:bg-gray-950
+          hover:border-gray-950
           hover:text-white
         `,
-
-
-        /* DETAILS */
-
+      
+      
+        /* ================================
+           ACCOUNT DETAILS
+        ================================= */
+      
         detailsGrid: `
           grid
           grid-cols-1
           sm:grid-cols-2
-          gap-x-8
+          gap-x-10
           gap-y-6
-          pt-5
+          pt-6
         `,
-
+      
         detail: `
+          min-w-0
           flex
           flex-col
-          gap-1
+          gap-1.5
         `,
-
+      
         detailLabel: `
-          text-[10px]
+          text-[9px]
           font-bold
           uppercase
-          tracking-wider
+          tracking-[1.5px]
           text-gray-400
         `,
-
+      
         detailValue: `
+          truncate
           text-sm
           font-bold
           text-gray-900
-          truncate
         `,
-
+      
         activeText: `
+          flex
+          items-center
+          gap-2
           text-emerald-500
         `,
-
-
-        /* PURCHASES */
-
+      
+      
+        /* ================================
+           PURCHASE HISTORY
+        ================================= */
+      
         purchaseCard: `
           mt-4
-          p-6
+          p-5
+          sm:p-6
           rounded-2xl
-          bg-gray-100
-          flex
-          flex-col
-          sm:flex-row
-          sm:items-center
-          sm:justify-between
-          gap-5
+          bg-white
+          border
+          border-gray-200
+          shadow-[0_4px_20px_rgba(0,0,0,0.02)]
         `,
-
+      
+        purchaseHeader: `
+          flex
+          items-end
+          justify-between
+          gap-4
+          pb-5
+          border-b
+          border-gray-100
+        `,
+      
         purchaseLabel: `
           text-[9px]
           font-black
+          uppercase
           tracking-[2px]
-          text-pink-400
+          text-pink-500
         `,
-
+      
         purchaseTitle: `
           mt-1
-          text-lg
-          font-extrabold
-          text-white
-        `,
-
-        purchaseDescription: `
-          mt-1
-          text-xs
-          text-gray-500
-        `,
-
-        purchaseBtn: `
-          shrink-0
-          px-4
-          py-2.5
-          rounded-xl
-          bg-white
+          text-xl
+          font-black
+          tracking-tight
           text-gray-950
+        `,
+      
+        purchaseCount: `
+          shrink-0
+          text-xs
+          font-semibold
+          text-gray-400
+        `,
+      
+        purchaseList: `
+          mt-5
+          flex
+          flex-col
+          gap-3
+        `,
+      
+        purchaseItem: `
+          group
+          flex
+          items-center
+          gap-4
+          p-3
+          rounded-2xl
+          border
+          border-gray-100
+          bg-gray-50
+          transition-all
+          duration-200
+          hover:bg-white
+          hover:border-gray-200
+          hover:-translate-y-0.5
+          hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)]
+        `,
+      
+        purchaseImage: `
+          size-16
+          shrink-0
+          rounded-xl
+          object-cover
+          bg-gray-200
+          transition-transform
+          duration-300
+          group-hover:scale-105
+        `,
+      
+        purchaseInfo: `
+          min-w-0
+          flex-1
+        `,
+      
+        purchaseItemName: `
+          truncate
+          text-sm
+          font-bold
+          text-gray-900
+        `,
+      
+        purchaseItemDescription: `
+          mt-1
+          line-clamp-1
+          text-xs
+          leading-5
+          text-gray-400
+        `,
+      
+        purchaseMeta: `
+          mt-2
+          flex
+          items-center
+          gap-2
+        `,
+      
+        purchasePrice: `
+          text-xs
+          font-black
+          text-gray-950
+        `,
+      
+        purchaseStatus: `
+          rounded-full
+          bg-emerald-50
+          px-2
+          py-1
+          text-[9px]
+          font-bold
+          uppercase
+          tracking-wider
+          text-emerald-600
+        `,
+      
+        purchaseArrow: `
+          hidden
+          size-8
+          shrink-0
+          items-center
+          justify-center
+          rounded-full
+          bg-white
+          text-gray-400
+          transition-all
+          duration-200
+          sm:flex
+          group-hover:bg-gray-950
+          group-hover:text-white
+        `,
+      
+        purchaseBtn: `
+          mt-5
+          w-full
+          px-4
+          py-3
+          rounded-xl
+          bg-gray-950
+          text-white
           text-xs
           font-bold
           transition-all
+          duration-200
           hover:bg-pink-500
-          hover:text-white
           hover:-translate-y-0.5
+          hover:shadow-[0_10px_25px_rgba(236,72,153,0.2)]
         `
       },
       inactiveProfile: {

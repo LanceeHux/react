@@ -202,25 +202,151 @@ export const ActiveProfile = ({ username, user_id, }) => {
         {/* Bottom */}
         <section className={styles.profile.activeProfile.purchaseCard}>
           <div>
-            <p>YOUR PURCHASES</p>
-            <div className="grid
-            grid-cols-1
-            sm:grid-cols-2
-            lg:grid-cols-3
-            gap-5 ">
-              {purchases.map(item => {
+            <p className="text-xs font-bold tracking-[0.15em] text-gray-400">
+              YOUR PURCHASES
+            </p>
+
+            <h3 className="mt-1 text-xl font-bold text-gray-900">
+              Recent purchases
+            </h3>
+
+            <div className="mt-5 flex flex-col gap-3">
+            <div className="mt-6 space-y-3">
+                {purchases.map(item => {
                   return (
-                    <div key={item.id} className='p-3 rounded-md'>
-                      <img src={`${item.item_img}`} alt="" className=''/>
-                      <h1>{item.item_name}</h1>
+                    <div
+                      key={item.id}
+                      className="
+                        group
+                        flex items-center gap-4
+                        rounded-2xl
+                        border border-gray-100
+                        bg-white
+                        p-3
+                        shadow-[0_2px_10px_rgba(0,0,0,0.04)]
+                        transition-all duration-200
+                        hover:-translate-y-0.5
+                        hover:border-gray-200
+                        hover:shadow-[0_8px_25px_rgba(0,0,0,0.08)]
+                      "
+                    >
+
+                      {/* Product Image */}
+                      <div
+                        className="
+                          relative
+                          h-20 w-20
+                          shrink-0
+                          overflow-hidden
+                          rounded-xl
+                          bg-gray-100
+                        "
+                      >
+                        <img
+                          src={item.item_img}
+                          alt={item.item_name}
+                          className="
+                            h-full w-full
+                            object-cover
+                            transition-transform duration-300
+                            group-hover:scale-110
+                          "
+                        />
+                      </div>
+
+                      {/* Product Information */}
+                      <div className="min-w-0 flex-1 py-1">
+
+                        <div className="flex items-center justify-between gap-3">
+
+                          <h1
+                            className="
+                              truncate
+                              text-sm
+                              font-semibold
+                              text-gray-900
+                            "
+                          >
+                            {item.item_name}
+                          </h1>
+
+                          <span
+                            className="
+                              hidden
+                              shrink-0
+                              rounded-full
+                              bg-green-50
+                              px-3 py-1
+                              text-[10px]
+                              font-semibold
+                              uppercase
+                              tracking-wide
+                              text-green-600
+                              sm:block
+                            "
+                          >
+                            Purchased
+                          </span>
+
+                        </div>
+
+                        <p
+                          className="
+                            mt-1
+                            line-clamp-2
+                            text-xs
+                            leading-5
+                            text-gray-400
+                          "
+                        >
+                          {item.item_description}
+                        </p>
+
+                        <div className="mt-2 flex items-center gap-3">
+
+                          <span className="text-sm font-bold text-gray-900">
+                            ₱{Number(item.item_price).toFixed(2)}
+                          </span>
+
+                          <span className="h-1 w-1 rounded-full bg-gray-300" />
+
+                          <span className="text-[11px] text-gray-400">
+                            Purchase #{item.id}
+                          </span>
+
+                        </div>
+
+                      </div>
+
+                      {/* Arrow */}
+                      <button
+                        className="
+                          hidden
+                          h-9 w-9
+                          shrink-0
+                          items-center justify-center
+                          rounded-full
+                          bg-gray-50
+                          text-gray-400
+                          transition-all
+                          group-hover:bg-gray-900
+                          group-hover:text-white
+                          sm:flex
+                        "
+                      >
+                        →
+                      </button>
+
                     </div>
                   )
-               })}
+                })}
+              </div>
             </div>
-            <span>Products you purchase will appear here.</span>
-            <button>Browse Marketplace →</button>
           </div>
-          
+
+          <button>
+            Browse Marketplace →
+          </button>
         </section>
       </section>
     </main>
