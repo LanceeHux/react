@@ -1,9 +1,13 @@
 import { styles } from "../App"
 
-export default function MyCart() {
+ const MyCart = async ({ user_id, username }) => {
+ //   const { data, error } = await supabase.from("accounts").eq("")
     return (
-    <>
-    hello
-    </>
+        <>
+        test
+        1
+        </>
     )
 }
+
+export default MyCart

@@ -35,7 +35,7 @@ const items = [
         name: "Denver Sticker",
         price: 100,
         desc: "A Denver sticker collection with different funny designs.",
-        img: "/images/L.png",
+        img: "/images/denver.jpeg",
         sold: 132
     },
     {

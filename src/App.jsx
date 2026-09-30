@@ -42,6 +42,8 @@ export default function App() {
       {/* DASHBOARD */}
       {activeSection === "DASHBOARD" && <Dashboard user_id={user_id}/>}
 
+      {/* MYCART */}
+      {activeSection === "MY_CART" && loggedIn && <MyCart user_id={user_id} username={username}/>}
       {/* PROFILE LOGIN */}
       {activeSection === "PROFILE" && <ShowProfile username={username} setUsername={setUsername} user_id={user_id} setUser_id={setUser_id} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}
       
