@@ -439,7 +439,15 @@ export const styles = {
           `
       }
     },
-
+    myCart: {
+      main: `
+            w-[92%]
+            max-w-7xl
+            mx-auto
+            py-10
+            md:py-14
+        `,
+    },
     profile: {
       activeProfile: {
 

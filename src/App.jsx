@@ -7,8 +7,8 @@ import MyCart from "./pages/mycart"
 import { ShowProfile } from "./pages/profile"
 
 export default function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
+  const  [loggedIn, setLoggedIn ] = useState(false);
+  const [ username, setUsername] = useState("");
   const [ user_id, setUser_id ] = useState()
 
   let [activeSection, setSection] = useState("PROFILE");
@@ -43,7 +43,7 @@ export default function App() {
       {activeSection === "DASHBOARD" && <Dashboard user_id={user_id}/>}
 
       {/* MYCART */}
-      {activeSection === "MY_CART" && loggedIn && <MyCart user_id={user_id} username={username}/>}
+      {activeSection === "MY_CART" && <MyCart user_id={user_id} username={username} loggedIn={loggedIn} />}
       {/* PROFILE LOGIN */}
       {activeSection === "PROFILE" && <ShowProfile username={username} setUsername={setUsername} user_id={user_id} setUser_id={setUser_id} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>}
       
